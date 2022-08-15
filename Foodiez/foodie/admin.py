@@ -1,13 +1,11 @@
 from django.contrib import admin
-from foodie import models
+from .models import Category,Recipe,Ingrediant
 # Register your models here.
+class RecipeAdmin(admin.ModelAdmin):
+    list_display =  ("recipe_name","created_by")
+    list_filter = ("created_by",)
 
-@admin.register(models.Recipe)
-class ReciepeAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(models.Category)
-class CategoryAdmin(admin.ModelAdmin):
-    pass
+admin.site.register(Category)
+admin.site.register(Ingrediant)
+admin.site.register(Recipe,RecipeAdmin)
 
