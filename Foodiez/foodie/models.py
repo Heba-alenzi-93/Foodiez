@@ -1,4 +1,4 @@
-from unicodedata import category
+
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -16,7 +16,7 @@ class Category(models.Model):
     name = models.CharField(unique=True, max_length=100)
     description = models.TextField(default="")
     created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="category",null=True)
+       User, on_delete=models.CASCADE, related_name="category",null=True)
     def __str__(self):
         return self.name
 
