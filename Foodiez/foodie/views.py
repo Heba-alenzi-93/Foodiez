@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Recipe,Category,Ingrediant
-from .forms import RegisterForm
-from django.contrib.auth import login
+from .forms import RegisterForm,LoginForm
+from django.contrib.auth import login,authenticate
 
 
 
@@ -11,7 +11,7 @@ def get_Recipes(request):
     context = {"recipes":recipes}
     return render(request,"recipes.html",context)
 
-
+# Register View 
 def register_user(request):
     form =  RegisterForm()
     if request.method == "POST":
@@ -26,3 +26,26 @@ def register_user(request):
         "form":form,
     }
     return render (request, "register.html",context)
+
+
+
+# Login View 
+def login_user(request):
+    form = LoginForm()
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            print(username)
+            auth_user = authenticate(username=username, password=password)
+            if auth_user is not None:
+                login(request, auth_user)
+                # Where you want to go after a successful login
+                return redirect("recipes_list")
+
+    context = {
+        "form": form,
+    }
+    return render(request, "login.html", context)
+
