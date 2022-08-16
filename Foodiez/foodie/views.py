@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from .models import Recipe,Category,Ingrediant
 from .forms import RegisterForm,LoginForm
-from django.contrib.auth import login,authenticate
+from django.contrib.auth import login,authenticate,logout
+from django.http import HttpRequest, HttpResponse
 
 
 
@@ -49,3 +50,11 @@ def login_user(request):
     }
     return render(request, "login.html", context)
 
+#logout view 
+def logout_user(request):
+    logout(request)
+    return redirect("recipes_list")
+
+
+def home(request: HttpRequest) -> HttpResponse:
+    return render(request, "home.html")

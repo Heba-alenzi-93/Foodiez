@@ -2,6 +2,7 @@
 {%block title%} Recipes {%endblock title%}
 
 {%block content%} 
-
-{{recipes}}
+{%for recipe in recipes %}
+{{recipes.recipe_name}}
+{% endfor %}
 {%endblock content%}

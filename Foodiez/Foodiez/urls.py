@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from foodie.views import get_Recipes,register_user,login_user
+from foodie.views import get_Recipes,register_user,login_user,logout_user
 
 
 urlpatterns = [
@@ -25,6 +25,7 @@ urlpatterns = [
     path("recipes/", get_Recipes,name="recipes_list"),
     path("register/",register_user,name="register"),
     path("login/",login_user,name="login"),
+    path("logout",logout_user,name="logout"),
 ]
 
 
