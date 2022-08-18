@@ -12,6 +12,16 @@ def get_Recipes(request):
     context = {"recipes":recipes}
     return render(request,"recipes.html",context)
 
+
+
+
+def get_recipe(request,recipe_id):
+    recipe=Recipe.objects.get(id=recipe_id)
+    context= {
+        "recipe": recipe
+    }
+    return render (request,"recipe-details.html",context)
+
 # Register View 
 def register_user(request):
     form =  RegisterForm()
@@ -54,6 +64,10 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect("recipes_list")
+
+
+
+
 
 
 def home(request: HttpRequest) -> HttpResponse:

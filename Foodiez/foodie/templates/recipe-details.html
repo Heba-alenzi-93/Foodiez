@@ -1,0 +1,10 @@
+{%extends "base.html"%}
+{%block title%} {{recipe.title}} {%endblock title%}
+
+{%block content%} 
+{{recipe.recipe_name}}
+{%for r in recipe.ingredients.all%}
+{{r.name}}
+{%endfor%}
+<img src="{{recipe.image.url}}"/>
+{%endblock content%}

@@ -17,17 +17,19 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from foodie.views import get_Recipes,register_user,login_user,logout_user
+from foodie.views import get_Recipes,register_user,login_user,logout_user,home,get_recipe
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("home/", home, name="home"),
     path("recipes/", get_Recipes,name="recipes_list"),
+    path("recipes/<int:recipe_id>/",get_recipe,name="recipe_details"),
     path("register/",register_user,name="register"),
     path("login/",login_user,name="login"),
     path("logout",logout_user,name="logout"),
+    
 ]
-
 
 
 
