@@ -30,7 +30,10 @@ def register_user(request):
         if form.is_valid():
             user = form.save(commit = False)
             user.set_password(user.password)
+            print(user.first_name)
             user.save()
+            print(user)
+
             login(request,user)
             return redirect("recipes_list")
     context = {
@@ -50,10 +53,14 @@ def login_user(request):
             password = form.cleaned_data["password"]
             print(username)
             auth_user = authenticate(username=username, password=password)
-            if auth_user is not None:
-                login(request, auth_user)
-                # Where you want to go after a successful login
-                return redirect("recipes_list")
+            login(request, auth_user)
+            return redirect("recipes_list")
+            # if auth_user is not None:
+            #     login(request, auth_user)
+            #     # Where you want to go after a successful login
+            #     print("heba")
+            #     return redirect("recipes_list")
+            # print("ghalya")
 
     context = {
         "form": form,

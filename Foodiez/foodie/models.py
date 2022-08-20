@@ -56,6 +56,7 @@ class Recipe (models.Model):
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="recipe")
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to="avtars/",null=True )
+    description = models.TextField(null=True) 
 
     def __str__(self):
         return self.recipe_name
